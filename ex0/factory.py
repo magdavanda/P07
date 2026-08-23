@@ -12,6 +12,8 @@ class CreatureFactory(ABC):
 
 
 class FlameFactory(CreatureFactory):
+    def __init__(self) -> None:
+        self.name = "Flameling"
     def create_base(self) -> creature.Creature:
         return creature.Flameling()
     
@@ -20,9 +22,12 @@ class FlameFactory(CreatureFactory):
 
 
 class AquaFactory(CreatureFactory):
+    def __init__(self) -> None:
+        self.name = "Aquabub"
     def create_base(self) -> creature.Creature:
         return creature.Aquabub()
 
     def create_evolved(self) -> creature.Creature:
         return creature.Torragon()
 
+ 
