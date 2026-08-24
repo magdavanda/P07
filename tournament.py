@@ -1,7 +1,12 @@
 from ex0 import CreatureFactory, FlameFactory, AquaFactory
 from ex1 import HealingCreatureFactory, TransformCreatureFactory
-from ex2 import BattleStrategy, NormalStrategy, AggressiveStrategy, DefensiveStrategy
+from ex2 import (
+        BattleStrategy,
+        NormalStrategy,
+        AggressiveStrategy,
+        DefensiveStrategy)
 from ex2.strategy import InvalidCreatureError
+
 
 def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
     oppopents_count: int = len(opponents)
@@ -14,7 +19,7 @@ def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
             print("* Battle *")
             opponent1 = opponents[i]
             opponent2 = opponents[j]
-            
+
             factory1, strategy1 = opponent1
             factory2, strategy2 = opponent2
 
@@ -28,13 +33,21 @@ def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
             try:
                 strategy1.act(creature1)
             except InvalidCreatureError as e:
-                print(f"Battle error, aborting tournament: {e} '{factory1.name}' for this {strategy1.name.lower()} strategy")
+                print(
+                        f"Battle error, aborting tournament: {e} "
+                        f"'{factory1.name}' for this "
+                        f"{strategy1.name.lower()} strategy"
+                        )
                 return
-        
+
             try:
                 strategy2.act(creature2)
             except InvalidCreatureError as e:
-                print(f"Battle error, aborting tournament: {e} '{factory2.name}' for this {strategy2.name.lower()} strategy")
+                print(
+                        f"Battle error, aborting tournament: {e} "
+                        f"'{factory2.name}' for this "
+                        f"{strategy2.name.lower()} strategy"
+                        )
                 return
             print()
 
@@ -51,7 +64,11 @@ def main() -> None:
 
     print("Tournament 0 (basic)")
 
-    opponents: list[tuple[CreatureFactory, BattleStrategy]] = [(flame_factory, normal_strategy), (healing_factory, defensive_strategy)]
+    opponents: list[tuple[CreatureFactory,
+                          BattleStrategy]] = [(flame_factory,
+                                               normal_strategy),
+                                              (healing_factory,
+                                               defensive_strategy)]
     list_to_print: list[str] = []
     for factory, strategy in opponents:
         list_to_print.append(f"({factory.name}+{strategy.name})")
@@ -61,7 +78,8 @@ def main() -> None:
     battle(opponents)
 
     print("\nTournament 1 (error)")
-    opponents = [(flame_factory, aggressive_strategy), (healing_factory, defensive_strategy)]
+    opponents = [(flame_factory, aggressive_strategy),
+                 (healing_factory, defensive_strategy)]
     list_to_print: list[str] = []
     for factory, strategy in opponents:
         list_to_print.append(f"({factory.name}+{strategy.name})")
@@ -71,7 +89,9 @@ def main() -> None:
     battle(opponents)
 
     print("\nTournament 2 (multiple)")
-    opponents = [(aqua_factory, normal_strategy), (healing_factory, defensive_strategy), (transform_factory, aggressive_strategy)]
+    opponents = [(aqua_factory, normal_strategy),
+                 (healing_factory, defensive_strategy),
+                 (transform_factory, aggressive_strategy)]
     list_to_print: list[str] = []
     for factory, strategy in opponents:
         list_to_print.append(f"({factory.name}+{strategy.name})")
