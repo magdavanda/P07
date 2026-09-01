@@ -10,6 +10,8 @@ class InvalidCreatureError(Exception):
 
 
 class BattleStrategy(ABC):
+    name: str
+
     @abstractmethod
     def act(self, creature: Creature) -> None:
         ...
@@ -23,42 +25,42 @@ class NormalStrategy(BattleStrategy):
     def __init__(self) -> None:
         self.name = "Normal"
 
+    def is_valid(self, creature: Creature) -> bool:
+        return isinstance(creature, Creature)
+
     def act(self, creature: Creature) -> None:
         if self.is_valid(creature):
             print(creature.attack())
         else:
             return
 
-    def is_valid(self, creature: Creature) -> bool:
-        return isinstance(creature, Creature)
-
 
 class AggressiveStrategy(BattleStrategy):
     def __init__(self) -> None:
         self.name = "Aggressive"
 
+    def is_valid(self, creature: Creature) -> bool:
+        return isinstance(creature, TransformCapability)
+
     def act(self, creature: Creature) -> None:
-        if self.is_valid(creature):
+        if isinstance(creature, TransformCapability):
             print(creature.transform())
             print(creature.attack())
             print(creature.revert())
         else:
             raise InvalidCreatureError
 
-    def is_valid(self, creature: Creature) -> bool:
-        return isinstance(creature, TransformCapability)
-
 
 class DefensiveStrategy(BattleStrategy):
     def __init__(self) -> None:
         self.name = "Defensive"
 
+    def is_valid(self, creature: Creature) -> bool:
+        return isinstance(creature, HealCapability)
+
     def act(self, creature: Creature) -> None:
-        if self.is_valid(creature):
+        if isinstance(creature, HealCapability):
             print(creature.attack())
             print(creature.heal())
         else:
             raise InvalidCreatureError("Invalid Creature!")
-
-    def is_valid(self, creature: Creature) -> bool:
-        return isinstance(creature, HealCapability)

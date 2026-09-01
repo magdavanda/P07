@@ -80,7 +80,7 @@ def main() -> None:
     print("\nTournament 1 (error)")
     opponents = [(flame_factory, aggressive_strategy),
                  (healing_factory, defensive_strategy)]
-    list_to_print: list[str] = []
+    list_to_print = []
     for factory, strategy in opponents:
         list_to_print.append(f"({factory.name}+{strategy.name})")
     print("[ ", end="")
@@ -92,7 +92,7 @@ def main() -> None:
     opponents = [(aqua_factory, normal_strategy),
                  (healing_factory, defensive_strategy),
                  (transform_factory, aggressive_strategy)]
-    list_to_print: list[str] = []
+    list_to_print = []
     for factory, strategy in opponents:
         list_to_print.append(f"({factory.name}+{strategy.name})")
     print("[ ", end="")

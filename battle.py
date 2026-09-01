@@ -1,7 +1,8 @@
-from ex0 import CreatureFactory, FlameFactory, AquaFactory
+# from ex0 import CreatureFactory, FlameFactory, AquaFactory
+import ex0
 
 
-def factory_check(factory: CreatureFactory) -> None:
+def factory_check(factory: ex0.CreatureFactory) -> None:
     base_creature = factory.create_base()
     print(base_creature.describe())
     print(base_creature.attack())
@@ -11,7 +12,9 @@ def factory_check(factory: CreatureFactory) -> None:
     print(evolved_creature.attack())
 
 
-def base_fight(flame_factory: FlameFactory, aqua_factory: AquaFactory) -> None:
+def base_fight(flame_factory: ex0.FlameFactory,
+               aqua_factory: ex0.AquaFactory
+               ) -> None:
     base_flame = flame_factory.create_base()
     base_aqua = aqua_factory.create_base()
     print(base_flame.describe())
@@ -25,8 +28,8 @@ def base_fight(flame_factory: FlameFactory, aqua_factory: AquaFactory) -> None:
 def main() -> None:
     print("Testing factory")
 
-    factory_flame = FlameFactory()
-    factory_aqua = AquaFactory()
+    factory_flame = ex0.FlameFactory()
+    factory_aqua = ex0.AquaFactory()
 
     factory_check(factory_flame)
     print("\nTesting factory")

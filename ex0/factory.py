@@ -3,6 +3,8 @@ from abc import ABC, abstractmethod
 
 
 class CreatureFactory(ABC):
+    name: str
+
     @abstractmethod
     def create_base(self) -> creature.Creature:
         ...

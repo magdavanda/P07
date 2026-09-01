@@ -1,10 +1,11 @@
-from ex1 import HealingCreatureFactory, TransformCreatureFactory
+# from ex1 import HealingCreatureFactory, TransformCreatureFactory
+import ex1
 
 
 def main() -> None:
     print("Testing Creature with healing capability")
 
-    healing_factory = HealingCreatureFactory()
+    healing_factory = ex1.HealingCreatureFactory()
     print(" base:")
     healing_base = healing_factory.create_base()
     print(healing_base.describe())
@@ -20,7 +21,7 @@ def main() -> None:
     print()
     print("Testing Creature with transform capability")
     print(" base:")
-    transform_factory = TransformCreatureFactory()
+    transform_factory = ex1.TransformCreatureFactory()
     transform_base = transform_factory.create_base()
     print(transform_base.describe())
     print(transform_base.attack())
