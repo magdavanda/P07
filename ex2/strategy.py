@@ -63,4 +63,4 @@ class DefensiveStrategy(BattleStrategy):
             print(creature.attack())
             print(creature.heal())
         else:
-            raise InvalidCreatureError("Invalid Creature!")
+            raise InvalidCreatureError
